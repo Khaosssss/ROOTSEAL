@@ -1,13 +1,34 @@
-# Sample Hardhat Project
+# RootSeal — Blockchain-based Certificate System
 
-This project demonstrates a basic Hardhat use case. It comes with a sample contract, a test for that contract, and a Hardhat Ignition module that deploys that contract.
+RootSeal is a decentralized certificate management system that uses Merkle Trees and Ethereum smart contracts to securely store and verify digital certificates.  
+It includes a React (Vite + Tailwind) frontend and an Express + Hardhat backend.
 
-Try running some of the following tasks:
+---
 
-```shell
-npx hardhat help
-npx hardhat test
-REPORT_GAS=true npx hardhat test
-npx hardhat node
-npx hardhat ignition deploy ./ignition/modules/Lock.js
-```
+## Features
+
+- Certificate creation and hashing using `keccak256`
+- Merkle tree generation for certificate batches
+- Certificate verification through stored Merkle roots
+- Blockchain integration via Hardhat and Ethers.js
+- Modern frontend built with React and Tailwind CSS
+
+---
+
+## Tech Stack
+
+| Layer | Technologies |
+|-------|---------------|
+| Frontend | React (Vite), Tailwind CSS, React Router |
+| Backend | Node.js, Express, MerkleTreeJS, Ethers.js |
+| Blockchain | Solidity, Hardhat, Ethereum local node |
+| Hashing | `keccak256` (Ethers) |
+
+---
+
+## Setup & Installation
+
+### 1. Clone the repository
+```bash
+git clone https://github.com/<your-username>/rootseal.git
+cd rootseal
