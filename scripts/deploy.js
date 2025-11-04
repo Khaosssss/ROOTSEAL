@@ -1,17 +1,22 @@
-const hre = require("hardhat");
+import hre from "hardhat";
 
 async function main() {
   const { ethers } = hre;
 
-  // Hardcoded dummy Merkle root (must be 32 bytes = 66 characters)
-  const hardcodedRoot = "0xaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
-  const description = "Initial Merkle Tree Batch";
+  // Take Merkle root + description from environment variables (or CLI args)
+  const args = process.argv.slice(2);
+  const merkleRoot = args[0] || "0x" + "0".repeat(64); // fallback dummy root
+  const description = args[1] || "Default Merkle Tree Batch";
 
+  // Deploy contract
   const RootSeal = await ethers.getContractFactory("RootSeal");
-  const rootSeal = await RootSeal.deploy(hardcodedRoot, description);
+  const rootSeal = await RootSeal.deploy(merkleRoot, description);
+
   await rootSeal.waitForDeployment();
 
   console.log(`RootSeal deployed at: ${rootSeal.target}`);
+  console.log(`Merkle Root: ${merkleRoot}`);
+  console.log(`Description: ${description}`);
 }
 
 main().catch((error) => {
